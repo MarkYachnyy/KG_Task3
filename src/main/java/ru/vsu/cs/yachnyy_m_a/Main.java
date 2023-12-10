@@ -14,13 +14,7 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        try{
-            Model cubeToCalc = ObjReader.read(FileIO.readFileContent("./models/test/teapot.obj"));
-            NormalCalculator.recalculateNormals(cubeToCalc);
-            ObjWriter.write(cubeToCalc, "./models/test/teapotOutput.obj");
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+
     }
 
 
