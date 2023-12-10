@@ -10,9 +10,9 @@ public class Polygon {
 
 
     public Polygon() {
-        vertexIndices = new ArrayList<Integer>();
-        textureVertexIndices = new ArrayList<Integer>();
-        normalIndices = new ArrayList<Integer>();
+        vertexIndices = new ArrayList<>();
+        textureVertexIndices = new ArrayList<>();
+        normalIndices = new ArrayList<>();
     }
 
     public void setVertexIndices(ArrayList<Integer> vertexIndices) {
@@ -42,4 +42,21 @@ public class Polygon {
         return normalIndices;
     }
 
+    public String toString(){
+        StringBuilder res = new StringBuilder().append('{');
+        for (int i = 0; i < vertexIndices.size(); i++) {
+            res.append(vertexIndices.get(i)).append('/').append(textureVertexIndices.size() > 0 ? textureVertexIndices.get(i) : "").append('/').append(normalIndices.size() > 0 ?  normalIndices.get(i) : "").append(' ');
+        }
+        res.append('}');
+        return res.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Polygon polygon2 = (Polygon) obj;
+        return this.vertexIndices.equals(polygon2.vertexIndices) ;
+//                &&
+//                this.textureVertexIndices.equals(polygon2.textureVertexIndices) &&
+//                this.normalIndices.equals(polygon2.normalIndices);
+    }
 }

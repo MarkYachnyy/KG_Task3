@@ -16,7 +16,7 @@ public class Vector3f {
         return new Vector3f(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
     }
 
-    public static Vector3f residual(Vector3f v1, Vector3f v2){
+    public static Vector3f residual(Vector3f v1, Vector3f v2) {
         return new Vector3f(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
     }
 
@@ -50,6 +50,21 @@ public class Vector3f {
         return new Vector3f(x / length, y / length, z / length);
     }
 
-    final float eps = 1e-7f;
+    public String coordsToStringSplitBySpace() {
+        return x + " " + y + " " + z;
+    }
+
+    public String toString() {
+        return "{" + x + ", " + y + ", " + z + "}";
+    }
+
+    public boolean equals(Object v2){
+        if(!(v2 instanceof Vector3f vv2)) return false;
+        return Math.abs(vv2.x - this.x) < eps &&
+                Math.abs(vv2.y - this.y) < eps &&
+                Math.abs(vv2.z - this.z) < eps;
+    }
+
+    final float eps = 1e-5f;
     float x, y, z;
 }

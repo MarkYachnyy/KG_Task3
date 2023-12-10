@@ -7,10 +7,19 @@ public class Vector2f {
         this.y = y;
     }
 
-    public boolean equals(Vector2f other) {
-        return Math.abs(x - other.x) < eps && Math.abs(y - other.y) < eps;
+    public String coordsToStringSplitBySpace() {
+        return x + " " + y;
     }
 
-    final float eps = 1e-7f;
+    public String toString() {
+        return "{" + x + ", " + y + "}";
+    }
+
+    public boolean equals(Object o) {
+        Vector2f v2 = (Vector2f) o;
+        return Math.abs(this.x - v2.x) < eps && Math.abs(this.y - v2.y) < eps;
+    }
+
+    final float eps = 1e-4f;
     float x, y;
 }

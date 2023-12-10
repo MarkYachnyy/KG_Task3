@@ -1,4 +1,4 @@
-package ru.vsu.cs.yachnyy_m_a.objreader;
+package ru.vsu.cs.yachnyy_m_a.obj_io;
 
 public class ObjReaderException extends RuntimeException {
     public ObjReaderException(String errorMessage, int lineInd) {

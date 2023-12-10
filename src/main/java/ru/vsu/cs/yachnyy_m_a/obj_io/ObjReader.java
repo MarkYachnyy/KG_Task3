@@ -1,4 +1,4 @@
-package ru.vsu.cs.yachnyy_m_a.objreader;
+package ru.vsu.cs.yachnyy_m_a.obj_io;
 
 
 import ru.vsu.cs.yachnyy_m_a.math.Vector2f;
@@ -72,7 +72,7 @@ public class ObjReader {
                     vertexIndex = list.getVertexIndices().get(i);
                 }
                 // проверка на vertexIndex < 0 нужна потому, что на прошлом условии мы уже перевели индексы на положительные
-                if (vertexIndex >= result.vertices.size() || vertexIndex < 0) {
+                if (vertexIndex >= result.vertices.size() + 1 || vertexIndex < 1) {
                     throw new ObjReaderException("The polygon is specified incorrectly: vertex index out of bounds.",
                             findLineInObj(
                                     new Scanner(fileContent),
@@ -89,7 +89,7 @@ public class ObjReader {
                         list.getNormalIndices().set(i, result.normals.size() + 1 + normalIndex);
                         normalIndex = list.getNormalIndices().get(i);
                     }
-                    if (normalIndex >= result.normals.size() || normalIndex < 0) {
+                    if (normalIndex >= result.normals.size() + 1 || normalIndex <= 0) {
                         throw new ObjReaderException("The polygon is specified incorrectly: normal index out of bounds.",
                                 findLineInObj(
                                         new Scanner(fileContent),
@@ -107,7 +107,7 @@ public class ObjReader {
                         list.getTextureVertexIndices().set(i, result.textureVertices.size() + 1 + textureIndex);
                         textureIndex = list.getTextureVertexIndices().get(i);
                     }
-                    if (textureIndex >= result.textureVertices.size() || textureIndex < 0) {
+                    if (textureIndex >= result.textureVertices.size() + 1 || textureIndex < 1) {
                         throw new ObjReaderException("The polygon is specified incorrectly: texture index out of bounds.",
                                 findLineInObj(
                                         new Scanner(fileContent),
@@ -208,17 +208,17 @@ public class ObjReader {
             String[] wordIndices = wordInLine.split("/");
             switch (wordIndices.length) {
                 case 1 -> {
-                    onePolygonVertexIndices.add(Integer.parseInt(wordIndices[0]) - 1);
+                    onePolygonVertexIndices.add(Integer.parseInt(wordIndices[0]));
                 }
                 case 2 -> {
-                    onePolygonVertexIndices.add(Integer.parseInt(wordIndices[0]) - 1);
-                    onePolygonTextureVertexIndices.add(Integer.parseInt(wordIndices[1]) - 1);
+                    onePolygonVertexIndices.add(Integer.parseInt(wordIndices[0]));
+                    onePolygonTextureVertexIndices.add(Integer.parseInt(wordIndices[1]));
                 }
                 case 3 -> {
-                    onePolygonVertexIndices.add(Integer.parseInt(wordIndices[0]) - 1);
-                    onePolygonNormalIndices.add(Integer.parseInt(wordIndices[2]) - 1);
+                    onePolygonVertexIndices.add(Integer.parseInt(wordIndices[0]));
+                    onePolygonNormalIndices.add(Integer.parseInt(wordIndices[2]));
                     if (!wordIndices[1].equals("")) {
-                        onePolygonTextureVertexIndices.add(Integer.parseInt(wordIndices[1]) - 1);
+                        onePolygonTextureVertexIndices.add(Integer.parseInt(wordIndices[1]));
                     }
                 }
                 default -> {
